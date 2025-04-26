@@ -19,6 +19,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { SidebarInput } from "@/components/ui/sidebar";
 
 const products = [
   {
@@ -170,7 +171,8 @@ export default function HomePage() {
                   <Button variant="ghost" className="justify-start">
                     <ShoppingCart className="mr-2 h-4 w-4" />
                     <span>Cart</span>
-                    <SidebarMenuBadge>5</SidebarMenuBadge>
+                    {/*  Remove this component if not defined, or ensure it's imported */}
+                    {/*  <SidebarMenuBadge>5</SidebarMenuBadge> */}
                   </Button>
                 </SidebarMenuButton>
               </SidebarMenuItem>
