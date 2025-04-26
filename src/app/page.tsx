@@ -1,6 +1,6 @@
 "use client";
 
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarRail, SidebarSeparator, SidebarTrigger } from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarRail, SidebarSeparator, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -12,14 +12,14 @@ import {
   Bug,
   LogOut,
   Home,
-  Plane
+  Plane,
+  Seedling
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { PottedPlant } from "@/components/icons";
 
 
 const products = [
@@ -230,11 +230,11 @@ export default function HomePage() {
       <SidebarInset>
         <div className="p-4">
           <div className="text-center">
-            <h1 className="text-3xl font-cursive">
-              <PottedPlant className="inline-block mr-2 h-6 w-6 text-emerald-500" />
+            <h1 className="text-3xl font-bold text-emerald-500">
+              <Seedling className="inline-block mr-2 h-6 w-6 text-emerald-500" />
               Welcome to AgriShop
             </h1>
-            <p className="text-muted-foreground font-cursive">Find the best products for your farm.</p>
+            <p className="text-muted-foreground font-semibold">Find the best products for your farm.</p>
           </div>
           <div className="grid gap-4 mt-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {filteredProducts.map(product => (
