@@ -10,7 +10,6 @@ import {
   Settings,
   Search,
   Home,
-  Seedling,
   Package,
   Sprout,
   Bug,
@@ -120,7 +119,7 @@ const products = [
   }
 ];
 
-export default function Home() {
+export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(products);
   const { toast } = useToast();
@@ -192,7 +191,7 @@ export default function Home() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <Button variant="ghost" className="justify-start">
-                    <Seedling className="mr-2 h-4 w-4" />
+                    <Sprout className="mr-2 h-4 w-4" />
                     <span>Seeds</span>
                   </Button>
                 </SidebarMenuButton>
