@@ -3,6 +3,7 @@ import type {Metadata} from 'next';
 import {Geist, Geist_Mono} from 'next/font/google';
 import './globals.css';
 import {Toaster} from "@/components/ui/toaster";
+import { Sprout } from "lucide-react";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -27,11 +28,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased font-playfair`}>
+      <div className="fixed inset-0 flex items-center justify-center bg-background z-50 transition-opacity duration-300 opacity-0 pointer-events-none" id="page-loader">
+          <Sprout className="h-24 w-24 text-emerald-500 animate-pulse" />
+      </div>
         {children}
         <Toaster />
+        <script>
+          {`
+            window.addEventListener('load', () => {
+              const loader = document.getElementById('page-loader');
+              if (loader) {
+                loader.classList.add('opacity-0');
+                loader.addEventListener('transitionend', () => {
+                  loader.style.display = 'none';
+                });
+              }
+            });
+          `}
+        </script>
       </body>
     </html>
   );
 }
-
-
