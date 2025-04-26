@@ -18,6 +18,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 
 
 const products = [
@@ -99,20 +100,31 @@ export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(products);
   const { toast } = useToast();
+  const [activeCategory, setActiveCategory] = useState("All");
+
 
   useEffect(() => {
-    const results = products.filter(product =>
+    let results = products;
+    if (activeCategory !== "All") {
+      results = products.filter(product => product.category === activeCategory);
+    }
+
+    results = results.filter(product =>
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.category.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredProducts(results);
-  }, [searchTerm]);
+  }, [searchTerm, activeCategory]);
 
   const handleAddToCart = (productName: string) => {
     toast({
       title: "Added to cart!",
       description: `${productName} has been added to your shopping cart.`,
     });
+  };
+
+  const handleCategoryClick = (category: string) => {
+    setActiveCategory(category);
   };
 
   return (
@@ -135,26 +147,26 @@ export default function HomePage() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Button variant="ghost" className="justify-start">
+                  <Link href="/" variant="ghost" className="justify-start">
                     <Home className="mr-2 h-4 w-4" />
                     <span>Home</span>
-                  </Button>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Button variant="ghost" className="justify-start">
+                  <Link href="/cart" variant="ghost" className="justify-start">
                     <ShoppingCart className="mr-2 h-4 w-4" />
                     <span>Cart</span>
-                  </Button>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Button variant="ghost" className="justify-start">
+                  <Link href="/settings" variant="ghost" className="justify-start">
                     <Settings className="mr-2 h-4 w-4" />
                     <span>Settings</span>
-                  </Button>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
@@ -164,7 +176,7 @@ export default function HomePage() {
             <SidebarGroupLabel>Categories</SidebarGroupLabel>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild>
+                <SidebarMenuButton asChild onClick={() => handleCategoryClick("Seeds")}>
                   <Button variant="ghost" className="justify-start">
                     <Sprout className="mr-2 h-4 w-4" />
                     <span>Seeds</span>
@@ -172,7 +184,7 @@ export default function HomePage() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild>
+                <SidebarMenuButton asChild onClick={() => handleCategoryClick("Fertilizers")}>
                   <Button variant="ghost" className="justify-start">
                     <Package className="mr-2 h-4 w-4" />
                     <span>Fertilizers</span>
@@ -180,7 +192,7 @@ export default function HomePage() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild>
+                <SidebarMenuButton asChild onClick={() => handleCategoryClick("Pesticides")}>
                   <Button variant="ghost" className="justify-start">
                     <Bug className="mr-2 h-4 w-4" />
                     <span>Pesticides</span>
@@ -188,7 +200,7 @@ export default function HomePage() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild>
+                <SidebarMenuButton asChild onClick={() => handleCategoryClick("Tools")}>
                   <Button variant="ghost" className="justify-start">
                     <Sprout className="mr-2 h-4 w-4" />
                     <span>Agriculture Tools</span>
@@ -202,10 +214,10 @@ export default function HomePage() {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Button variant="ghost" className="justify-start">
+                <Link href="/logout" variant="ghost" className="justify-start">
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Logout</span>
-                </Button>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -220,11 +232,11 @@ export default function HomePage() {
           <p className="text-muted-foreground">Find the best products for your farm.</p>
           <div className="grid gap-4 mt-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {filteredProducts.map(product => (
-              <Card key={product.id}>
+              <Card key={product.id} className="flex flex-col">
                 <CardHeader className="p-0">
                   <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover rounded-t-md" />
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-grow">
                   <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
                   <CardDescription>{product.category}</CardDescription>
                   <p>{product.description}</p>
@@ -241,4 +253,3 @@ export default function HomePage() {
     </SidebarProvider>
   );
 }
-
