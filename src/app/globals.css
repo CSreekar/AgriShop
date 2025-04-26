@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -34,8 +36,8 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-    --sidebar-background: 0 0% 0%;
-    --sidebar-foreground: 100 100% 30%;
+    --sidebar-background: 150 100% 30%; /* Emerald Green */
+    --sidebar-foreground: 0 0% 100%; /* White */
     --sidebar-primary: 100 50% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 100 30% 85%;
@@ -68,8 +70,8 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --sidebar-background: 0 0% 0%;
-    --sidebar-foreground: 100 100% 30%;
+    --sidebar-background: 150 100% 30%; /* Emerald Green */
+    --sidebar-foreground: 0 0% 100%; /* White */
     --sidebar-primary: 100 50% 60%;
     --sidebar-primary-foreground: 0 0% 10%;
     --sidebar-accent: 100 30% 35%;
@@ -87,3 +89,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+
