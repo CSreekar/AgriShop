@@ -221,12 +221,12 @@ export default function HomePage() {
           <div className="grid gap-4 mt-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {filteredProducts.map(product => (
               <Card key={product.id}>
-                <CardHeader>
-                  <CardTitle>{product.name}</CardTitle>
-                  <CardDescription>{product.category}</CardDescription>
+                <CardHeader className="p-0">
+                  <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover rounded-t-md" />
                 </CardHeader>
                 <CardContent>
-                  <img src={product.imageUrl} alt={product.name} className="w-full h-32 object-cover rounded-md mb-2" />
+                  <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
+                  <CardDescription>{product.category}</CardDescription>
                   <p>{product.description}</p>
                 </CardContent>
                 <CardFooter className="flex items-center justify-between">
