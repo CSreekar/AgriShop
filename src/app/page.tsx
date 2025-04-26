@@ -1,6 +1,6 @@
 "use client";
 
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarRail, SidebarSeparator, SidebarTrigger } from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarRail, SidebarSeparator, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -13,15 +13,14 @@ import {
   LogOut,
   Home,
   Plane,
-  Seedling
+  Trees
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { PottedPlant } from "@/components/icons";
-
+import { PottedPlant } from "lucide-react";
 
 const products = [
   {
@@ -228,10 +227,10 @@ export default function HomePage() {
           <SidebarTrigger />
         </SidebarRail>
       </Sidebar>
-      <main className="p-4">
+      <SidebarInset className="p-4">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-emerald-500 font-univers">
-            <PottedPlant className="inline-block mr-2 h-6 w-6 text-emerald-500" />
+            <Trees className="inline-block mr-2 h-6 w-6 text-emerald-500" />
             Welcome to AgriShop
           </h1>
           <p className="text-muted-foreground font-semibold font-univers">Find the best products for your farm.</p>
@@ -254,7 +253,7 @@ export default function HomePage() {
             </Card>
           ))}
         </div>
-      </main>
+      </SidebarInset>
     </SidebarProvider>
   );
 }
