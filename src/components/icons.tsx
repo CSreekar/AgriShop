@@ -24,3 +24,4 @@ export function PottedPlant(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   )
 }
+

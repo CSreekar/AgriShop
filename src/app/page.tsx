@@ -20,6 +20,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { PottedPlant } from "@/components/icons";
 
 
 const products = [
@@ -227,35 +228,33 @@ export default function HomePage() {
           <SidebarTrigger />
         </SidebarRail>
       </Sidebar>
-      <SidebarInset>
-        <div className="p-4">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold text-emerald-500">
-              <Seedling className="inline-block mr-2 h-6 w-6 text-emerald-500" />
-              Welcome to AgriShop
-            </h1>
-            <p className="text-muted-foreground font-semibold">Find the best products for your farm.</p>
-          </div>
-          <div className="grid gap-4 mt-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {filteredProducts.map(product => (
-              <Card key={product.id} className="flex flex-col justify-between">
-                <CardHeader className="p-0">
-                  <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover rounded-t-md" />
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
-                  <CardDescription>{product.category}</CardDescription>
-                  <p>{product.description}</p>
-                </CardContent>
-                <CardFooter className="flex items-center justify-between">
-                  <span>₹{product.price.toFixed(2)}</span>
-                  <Button onClick={() => handleAddToCart(product.name)}>Add to Cart</Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
+      <main className="p-4">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-emerald-500 font-univers">
+            <PottedPlant className="inline-block mr-2 h-6 w-6 text-emerald-500" />
+            Welcome to AgriShop
+          </h1>
+          <p className="text-muted-foreground font-semibold font-univers">Find the best products for your farm.</p>
         </div>
-      </SidebarInset>
+        <div className="grid gap-4 mt-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {filteredProducts.map(product => (
+            <Card key={product.id} className="flex flex-col justify-between">
+              <CardHeader className="p-0">
+                <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover rounded-t-md" />
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
+                <CardDescription>{product.category}</CardDescription>
+                <p>{product.description}</p>
+              </CardContent>
+              <CardFooter className="flex items-center justify-between">
+                <span>₹{product.price.toFixed(2)}</span>
+                <Button onClick={() => handleAddToCart(product.name)}>Add to Cart</Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      </main>
     </SidebarProvider>
   );
 }
