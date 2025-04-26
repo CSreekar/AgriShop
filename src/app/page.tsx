@@ -9,16 +9,17 @@ import {
   Settings,
   Search,
   Package,
-  Sprout,
   Bug,
   LogOut,
-  Home
+  Home,
+  Plane
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { PottedPlant } from "@/components/icons";
 
 
 const products = [
@@ -178,7 +179,7 @@ export default function HomePage() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild onClick={() => handleCategoryClick("Seeds")}>
                   <Button variant="ghost" className="justify-start">
-                    <Sprout className="mr-2 h-4 w-4" />
+                    <Plane className="mr-2 h-4 w-4" />
                     <span>Seeds</span>
                   </Button>
                 </SidebarMenuButton>
@@ -202,7 +203,7 @@ export default function HomePage() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild onClick={() => handleCategoryClick("Tools")}>
                   <Button variant="ghost" className="justify-start">
-                    <Sprout className="mr-2 h-4 w-4" />
+                    <Plane className="mr-2 h-4 w-4" />
                     <span>Agriculture Tools</span>
                   </Button>
                 </SidebarMenuButton>
@@ -228,11 +229,16 @@ export default function HomePage() {
       </Sidebar>
       <SidebarInset>
         <div className="p-4">
-          <h1 className="text-2xl font-bold">Welcome to AgriShop</h1>
-          <p className="text-muted-foreground">Find the best products for your farm.</p>
+          <div className="text-center">
+            <h1 className="text-3xl font-cursive">
+              <PottedPlant className="inline-block mr-2 h-6 w-6 text-emerald-500" />
+              Welcome to AgriShop
+            </h1>
+            <p className="text-muted-foreground font-cursive">Find the best products for your farm.</p>
+          </div>
           <div className="grid gap-4 mt-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {filteredProducts.map(product => (
-              <Card key={product.id} className="flex flex-col">
+              <Card key={product.id} className="flex flex-col justify-between">
                 <CardHeader className="p-0">
                   <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover rounded-t-md" />
                 </CardHeader>
